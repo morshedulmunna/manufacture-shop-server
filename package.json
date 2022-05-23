@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "This is Manifecture Compnay Web Server",
   "main": "server.js",
+  "type": "module",
   "author": "morshedulmunna",
   "license": "no",
   "private": true,

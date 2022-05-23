@@ -1,11 +1,14 @@
-const express = require("express");
-const cors = require("cors");
-const jwt = require("jsonwebtoken");
-const { MongoClient } = require("mongodb");
+import express from "express";
+import cors from "cors";
+import jwt from "jsonwebtoken";
+import { MongoClient } from "mongodb";
+import dotenv from "dotenv";
 const app = express();
 
+import productsRouters from "./Routes/products.js";
+
 // Require ==========>
-require("dotenv").config();
+dotenv.config();
 const PORT = process.env.PORT || 5000;
 
 // Middle-Ware
@@ -26,6 +29,9 @@ const run = async () => {
     // Connect DataBase
     await client.connect();
     console.log("DB Connected");
+
+    // Router
+    app.use("/products", productsRouters);
   } finally {
   }
 };
