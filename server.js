@@ -4,6 +4,7 @@ import jwt from "jsonwebtoken";
 import client from "./dbConnect.js";
 const app = express();
 
+// Import Router
 import productsRouters from "./Routes/products.js";
 
 // Require ==========>
@@ -34,17 +35,3 @@ app.get("/", (req, res) => {
 app.listen(PORT, () => {
   console.log("server is running port", PORT);
 });
-
-// verify token function =======>>>
-function verifyToken(token) {
-  let email;
-  jwt.verify(token, process.env.ACCESS_TOKEN, function (err, decoded) {
-    if (err) {
-      email = "Invalid email";
-    }
-    if (decoded) {
-      email = decoded;
-    }
-  });
-  return email;
-}
