@@ -6,6 +6,7 @@ const app = express();
 
 // Import Router
 import productsRouters from "./Routes/products.js";
+import loginRouters from "./Routes/login.js";
 
 // Require ==========>
 const PORT = process.env.PORT || 5000;
@@ -23,6 +24,7 @@ const run = async () => {
 
     // Router
     app.use("/products", productsRouters);
+    app.use("/login", loginRouters);
   } finally {
   }
 };
