@@ -9,6 +9,7 @@ import productsRouters from "./Routes/products.js";
 import loginRouters from "./Routes/login.js";
 import ordersRouters from "./Routes/order.js";
 import reviewRouters from "./Routes/review.js";
+import userRouter from "./Routes/user.js";
 
 // Require ==========>
 const PORT = process.env.PORT || 5000;
@@ -29,6 +30,7 @@ const run = async () => {
     app.use("/login", loginRouters);
     app.use("/orders", ordersRouters);
     app.use("/review", reviewRouters);
+    app.use("/users", userRouter);
 
     //
     //
