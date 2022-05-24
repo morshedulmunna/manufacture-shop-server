@@ -12,4 +12,18 @@ router.post("/", verifyJWT, async (req, res) => {
   res.send({ success: "Product Upload Successfully", result });
 });
 
+// Get Order List
+router.get("/", verifyJWT, async (req, res) => {
+  const OrderUser = req.query.orderUser;
+  const decodedEmail = req.decoded.email;
+  if (OrderUser === decodedEmail) {
+    const query = { email: OrderUser };
+    const Orders = await orderCollection.find(query).toArray();
+    console.log(Orders);
+    return res.send(Orders);
+  } else {
+    return res.status(403).send({ message: "forbidden access" });
+  }
+});
+
 export default router;
