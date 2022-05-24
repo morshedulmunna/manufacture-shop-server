@@ -1,12 +1,13 @@
 import express from "express";
 import cors from "cors";
-import jwt from "jsonwebtoken";
 import client from "./dbConnect.js";
 const app = express();
 
 // Import Router
+// import verifyJWT from "./Helper/tokenVerify.js";
 import productsRouters from "./Routes/products.js";
 import loginRouters from "./Routes/login.js";
+import ordersRouters from "./Routes/order.js";
 
 // Require ==========>
 const PORT = process.env.PORT || 5000;
@@ -25,6 +26,10 @@ const run = async () => {
     // Router
     app.use("/products", productsRouters);
     app.use("/login", loginRouters);
+    app.use("/orders", ordersRouters);
+
+    //
+    //
   } finally {
   }
 };
