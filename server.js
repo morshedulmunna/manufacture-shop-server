@@ -8,6 +8,7 @@ const app = express();
 import productsRouters from "./Routes/products.js";
 import loginRouters from "./Routes/login.js";
 import ordersRouters from "./Routes/order.js";
+import reviewRouters from "./Routes/review.js";
 
 // Require ==========>
 const PORT = process.env.PORT || 5000;
@@ -27,6 +28,7 @@ const run = async () => {
     app.use("/products", productsRouters);
     app.use("/login", loginRouters);
     app.use("/orders", ordersRouters);
+    app.use("/review", reviewRouters);
 
     //
     //

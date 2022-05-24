@@ -19,7 +19,6 @@ router.get("/", verifyJWT, async (req, res) => {
   if (OrderUser === decodedEmail) {
     const query = { email: OrderUser };
     const Orders = await orderCollection.find(query).toArray();
-    console.log(Orders);
     return res.send(Orders);
   } else {
     return res.status(403).send({ message: "forbidden access" });
