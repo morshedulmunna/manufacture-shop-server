@@ -1,6 +1,7 @@
 import express from "express";
 import { ObjectId } from "mongodb";
 import client from "./../dbConnect.js";
+import verifyJWT from "../Helper/tokenVerify.js";
 
 const router = express.Router();
 
@@ -18,6 +19,13 @@ router.get("/:id", async (req, res) => {
   const id = req.params.id;
   const result = await productsCollection.findOne({ _id: ObjectId(id) });
   res.send(result);
+});
+
+// Product
+router.post("/", verifyJWT, async (req, res) => {
+  const newProduct = req.body;
+  const result = await productsCollection.insertOne(newProduct);
+  res.send({ success: "Product Upload Successfully", result });
 });
 
 export default router;
