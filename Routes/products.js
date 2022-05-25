@@ -27,5 +27,11 @@ router.post("/", verifyJWT, async (req, res) => {
   const result = await productsCollection.insertOne(newProduct);
   res.send({ success: "Product Upload Successfully", result });
 });
+// Product Delete
+router.delete("/:id", verifyJWT, async (req, res) => {
+  const id = req.params.id;
+  const result = await productsCollection.deleteOne({ _id: ObjectId(id) });
+  res.send({ success: "Product Upload Successfully", result });
+});
 
 export default router;
