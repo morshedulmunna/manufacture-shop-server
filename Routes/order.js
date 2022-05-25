@@ -11,9 +11,8 @@ router.post("/", verifyJWT, async (req, res) => {
   const result = await orderCollection.insertOne(newProduct);
   res.send({ success: "Product Upload Successfully", result });
 });
-
 // Get Order List
-router.get("/", verifyJWT, async (req, res) => {
+router.get("/userOrder", verifyJWT, async (req, res) => {
   const OrderUser = req.query.orderUser;
   const decodedEmail = req.decoded.email;
   if (OrderUser === decodedEmail) {
@@ -23,6 +22,12 @@ router.get("/", verifyJWT, async (req, res) => {
   } else {
     return res.status(403).send({ message: "forbidden access" });
   }
+});
+
+// Get All Order
+router.get("/allOrder", verifyJWT, async (req, res) => {
+  const allOrder = await orderCollection.find({}).toArray();
+  res.send(allOrder);
 });
 
 export default router;

@@ -10,6 +10,7 @@ import loginRouters from "./Routes/login.js";
 import ordersRouters from "./Routes/order.js";
 import reviewRouters from "./Routes/review.js";
 import userRouter from "./Routes/user.js";
+import adminRouter from "./Routes/admin.js";
 
 // Require ==========>
 const PORT = process.env.PORT || 5000;
@@ -31,6 +32,7 @@ const run = async () => {
     app.use("/orders", ordersRouters);
     app.use("/review", reviewRouters);
     app.use("/users", userRouter);
+    app.use("/admin", adminRouter);
 
     //
     //
