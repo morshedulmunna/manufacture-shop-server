@@ -2,6 +2,7 @@ import express from "express";
 import client from "./../dbConnect.js";
 const router = express.Router();
 import verifyJWT from "../Helper/tokenVerify.js";
+import { ObjectId } from "mongodb";
 // collection
 const orderCollection = client.db("inc-store").collection("Orders");
 
@@ -28,6 +29,12 @@ router.get("/userOrder", verifyJWT, async (req, res) => {
 router.get("/allOrder", verifyJWT, async (req, res) => {
   const allOrder = await orderCollection.find({}).toArray();
   res.send(allOrder);
+});
+// Get All Order
+router.get("/one/:id", verifyJWT, async (req, res) => {
+  const id = req.params.id;
+  const Order = await orderCollection.findOne({ _id: ObjectId(id) });
+  res.send(Order);
 });
 
 export default router;
