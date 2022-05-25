@@ -27,9 +27,15 @@ router.put("/:email", async (req, res) => {
   res.send({ result, token });
 });
 
-// Get user From Email
+// Get All Users
 router.get("/", verifyJWT, async (req, res) => {
+  const result = await userCollection.find({}).toArray();
+  res.send(result);
+});
+// Get user From Email
+router.get("/one", verifyJWT, async (req, res) => {
   const email = req.query.email;
+
   const result = await userCollection.findOne({ email: email });
   res.send(result);
 });
