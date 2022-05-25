@@ -14,4 +14,10 @@ router.post("/", verifyJWT, async (req, res) => {
   res.send({ success: "Review Insert Successfully", result });
 });
 
+// Get All Review From Email
+router.get("/", verifyJWT, async (req, res) => {
+  const result = await reviewsCollection.find({}).toArray();
+  res.send(result);
+});
+
 export default router;
