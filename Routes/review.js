@@ -17,7 +17,7 @@ router.post("/", verifyJWT, async (req, res) => {
 // Get All Review From Email
 router.get("/", async (req, res) => {
   const result = await reviewsCollection.find({}).toArray();
-  res.send(result);
+  res.send(result.reverse());
 });
 
 export default router;

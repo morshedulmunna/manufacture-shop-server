@@ -11,7 +11,7 @@ const productsCollection = client.db("inc-store").collection("products");
 // Get All Products
 router.get("/", async (req, res) => {
   const products = await productsCollection.find({}).toArray();
-  res.send(products);
+  res.send(products.reverse());
 });
 
 // API need to get specific user
