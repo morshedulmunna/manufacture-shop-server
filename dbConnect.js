@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 // Require ==========>
 dotenv.config();
 
-// DB Connection
+// DB Connection here
 const URI = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.hkk7c.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 
 // Create DataBase Client======>>>
