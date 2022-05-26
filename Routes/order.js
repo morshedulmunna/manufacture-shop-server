@@ -5,6 +5,7 @@ import verifyJWT from "../Helper/tokenVerify.js";
 import { ObjectId } from "mongodb";
 // collection
 const orderCollection = client.db("inc-store").collection("Orders");
+const paymentCollection = client.db("inc-store").collection("Payments");
 
 //added new Product item with JWT Token Base ==========>
 router.post("/userOrder", verifyJWT, async (req, res) => {
@@ -35,6 +36,26 @@ router.get("/one/:id", verifyJWT, async (req, res) => {
   const id = req.params.id;
   const Order = await orderCollection.findOne({ _id: ObjectId(id) });
   res.send(Order);
+});
+
+//
+router.patch("/payment/:id", verifyJWT, async (req, res) => {
+  const id = req.params.id;
+  console.log(id);
+  const payment = req.body;
+  console.log(payment);
+
+  const filter = { _id: ObjectId(id) };
+  const updatedDoc = {
+    $set: {
+      paid: true,
+      transactionId: payment.transactionId,
+    },
+  };
+
+  const result = await paymentCollection.insertOne(payment);
+  const updatedOrder = await orderCollection.updateOne(filter, updatedDoc);
+  res.send(updatedOrder);
 });
 
 export default router;
