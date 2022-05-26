@@ -11,6 +11,7 @@ import ordersRouters from "./Routes/order.js";
 import reviewRouters from "./Routes/review.js";
 import userRouter from "./Routes/user.js";
 import adminRouter from "./Routes/admin.js";
+import stripeRoute from "./Routes/stripe.js";
 
 // Require ==========>
 const PORT = process.env.PORT || 5000;
@@ -33,6 +34,8 @@ const run = async () => {
     app.use("/review", reviewRouters);
     app.use("/users", userRouter);
     app.use("/admin", adminRouter);
+    app.use("/create-payment-intent", stripeRoute);
+    //
 
     //
     //
