@@ -29,7 +29,6 @@ router.get("/userOrder", verifyJWT, async (req, res) => {
 // Delete My Order
 router.delete("/delete/:id", verifyJWT, async (req, res) => {
   const id = req.params.id;
-  console.log(id);
   const filter = { _id: ObjectId(id) };
   const result = await orderCollection.deleteOne(filter);
   res.send({ success: "Product Delete Successfully", result });
