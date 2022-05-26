@@ -41,9 +41,7 @@ router.get("/one/:id", verifyJWT, async (req, res) => {
 //
 router.patch("/payment/:id", verifyJWT, async (req, res) => {
   const id = req.params.id;
-  console.log(id);
   const payment = req.body;
-  console.log(payment);
 
   const filter = { _id: ObjectId(id) };
   const updatedDoc = {
@@ -57,5 +55,27 @@ router.patch("/payment/:id", verifyJWT, async (req, res) => {
   const updatedOrder = await orderCollection.updateOne(filter, updatedDoc);
   res.send(updatedOrder);
 });
+
+// Delivary Status
+router.patch("/deliver/:id", verifyJWT, async (req, res) => {
+  const id = req.params.id;
+
+  const filter = { _id: ObjectId(id) };
+  const updatedDoc = {
+    $set: {
+      deliverStatus: true,
+    },
+  };
+  const result = await paymentCollection.updateOne(filter, updatedDoc);
+  const updatedOrder = await orderCollection.updateOne(filter, updatedDoc);
+  res.send(updatedOrder);
+});
+
+// // Product Delete
+// router.delete("/:id", verifyJWT, async (req, res) => {
+//   const id = req.params.id;
+//   const result = await productsCollection.deleteOne({ _id: ObjectId(id) });
+//   res.send({ success: "Product Upload Successfully", result });
+// });
 
 export default router;
