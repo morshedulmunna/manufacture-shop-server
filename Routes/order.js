@@ -26,10 +26,19 @@ router.get("/userOrder", verifyJWT, async (req, res) => {
   }
 });
 
+// Delete My Order
+router.delete("/delete/:id", verifyJWT, async (req, res) => {
+  const id = req.params.id;
+  console.log(id);
+  const filter = { _id: ObjectId(id) };
+  const result = await orderCollection.deleteOne(filter);
+  res.send({ success: "Product Delete Successfully", result });
+});
+
 // Get All Order
 router.get("/allOrder", verifyJWT, async (req, res) => {
   const allOrder = await orderCollection.find({}).toArray();
-  res.send(allOrder);
+  res.send(allOrder.reverse());
 });
 // Get All Order
 router.get("/one/:id", verifyJWT, async (req, res) => {
@@ -42,7 +51,6 @@ router.get("/one/:id", verifyJWT, async (req, res) => {
 router.patch("/payment/:id", verifyJWT, async (req, res) => {
   const id = req.params.id;
   const payment = req.body;
-
   const filter = { _id: ObjectId(id) };
   const updatedDoc = {
     $set: {
@@ -70,12 +78,5 @@ router.patch("/deliver/:id", verifyJWT, async (req, res) => {
   const updatedOrder = await orderCollection.updateOne(filter, updatedDoc);
   res.send(updatedOrder);
 });
-
-// // Product Delete
-// router.delete("/:id", verifyJWT, async (req, res) => {
-//   const id = req.params.id;
-//   const result = await productsCollection.deleteOne({ _id: ObjectId(id) });
-//   res.send({ success: "Product Upload Successfully", result });
-// });
 
 export default router;
