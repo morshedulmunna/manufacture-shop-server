@@ -3,7 +3,6 @@ import cors from "cors";
 import client from "./dbConnect.js";
 const app = express();
 
-// Import Router
 // import verifyJWT from "./Helper/tokenVerify.js";
 import productsRouters from "./Routes/products.js";
 import loginRouters from "./Routes/login.js";
@@ -20,12 +19,11 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
-// Database Run funtion with try finnaly =====>>>>
+// Database Run function with try Finlay =====>>>>
 const run = async () => {
   try {
     // Connect DataBase
     await client.connect();
-    console.log("DB Connected");
 
     // Router
     app.use("/products", productsRouters);
@@ -35,17 +33,15 @@ const run = async () => {
     app.use("/users", userRouter);
     app.use("/admin", adminRouter);
     app.use("/create-payment-intent", stripeRoute);
-    //
-
-    //
-    //
   } finally {
   }
 };
 run().catch(console.dir);
 
 app.get("/", (req, res) => {
-  res.send("Runnig Server");
+  res.send({
+    message: "Running Server",
+  });
 });
 
 app.listen(PORT, () => {
