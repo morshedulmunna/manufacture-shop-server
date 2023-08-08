@@ -1,7 +1,7 @@
-## Mnufacturer-Wbsite-Srver-Sie- MongoDB, Exprex Backend [API](https://protected-scrubland-14971.herokuapp.com/).
+## Mnufacturer-Wbsite-Srver-Sie- MongoDB, Exprex Backend [API](https://alliance-inventory.onrender.com/).
 
-## Root Api   Link: https://protected-scrubland-14971.herokuapp.com/
-### [Live-Website](https://alliance-inc.web.app/)
+## Root Api   Link: https://alliance-inventory.onrender.com/
+### [Live-Website](https://alliance-inventory.onrender.com/)
 
 ### Special Featured:
 - JWT Token Base Protected Api
@@ -16,7 +16,5 @@
 - Stripe Payment System
 - nodemon
 - Dotenv
-
-
 
 ©copyright all credit 2022. develop by morshedulmunna
