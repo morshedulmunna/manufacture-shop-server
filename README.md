@@ -1,7 +1,6 @@
 ## Mnufacturer-Wbsite-Srver-Sie- MongoDB, Exprex Backend [API](https://alliance-inventory.onrender.com/).
 
 ## Root Api   Link: https://alliance-inventory.onrender.com/
-### [Live-Website](https://alliance-inventory.onrender.com/)
 
 ### Special Featured:
 - JWT Token Base Protected Api
